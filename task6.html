@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="quizApp">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Interactive Quiz App</title>
+  <link rel="stylesheet" href="task6.css">
+</head>
+
+<body ng-controller="QuizController">
+
+  <div class="quiz-container">
+    <div ng-show="!quizStarted">
+      <h1>Welcome to the Quiz App</h1>
+      <button ng-click="startQuiz()">Start Quiz</button>
+    </div>
+
+    <div ng-show="quizStarted && !quizFinished">
+      <h2>{{ currentQuestion.question }}</h2>
+      <ul>
+        <li ng-repeat="option in currentQuestion.options">
+          <label>
+            <input type="radio" ng-model="selectedOption" ng-value="option">{{ option }}
+          </label>
+        </li>
+      </ul>
+      <button ng-click="submitAnswer()">Next</button>
+    </div>
+
+    <div ng-show="quizFinished">
+      <h1>Quiz Finished!</h1>
+      <p>Your score: {{ score }}</p>
+      <button ng-click="restartQuiz()">Restart Quiz</button>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="task6.js"></script>
+</body>
+
+</html>
